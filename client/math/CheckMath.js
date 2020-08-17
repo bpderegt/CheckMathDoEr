@@ -1,34 +1,33 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import Tip from './Tip.js';
 import Total from './Total.js';
 import TipSelector from './TipSelector.js';
 
-import formatPrice from './formatPrice.js';
+import { formatPrice, totalTipAndTax } from './priceHelpers.js';
 
-const fakeTip = 0.15;
+const CheckMath = ({ name, info, taxRate, tipAdjust }) => {
+  const { tipPercent, items, tipIndex } = info;
+  let itemSum = 0;
+  items.map(item => itemSum += item);
 
-const CheckMath = ({ name, items, tax }) => {
-  let sum = 0;
-  items.map(item => sum += (item * (1 + tax)));
-  let formattedSum = formatPrice(sum);
+  let { total, tip, tax, sum } = totalTipAndTax(itemSum, tipPercent, taxRate);
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
-        {name}
+        {name.substring(name.indexOf(`-`) + 1)}
       </Text>
       <Text style={styles.text}>
-        {formattedSum}
+        {formatPrice(total + tax)}
       </Text>
       <View style={styles.text}>
-        <TipSelector />
+        <TipSelector name={name} tipIndex={tipIndex} tipAdjust={tipAdjust}/>
       </View>
       <Text style={styles.text}>
-        <Tip sum={sum} tip={fakeTip}/>
+        {formatPrice(tip)}
       </Text>
       <Text style={styles.text}>
-        <Total sum={sum} tip={fakeTip}/>
+        <Total sum={sum}/>
       </Text>
     </View>
   )

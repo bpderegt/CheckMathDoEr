@@ -3,7 +3,6 @@ import { StyleSheet, View, Text } from 'react-native';
 import Item from './Item.js'
 
 const NamesAndItems = ({ name, items, changeItem }) => {
-  // console.log(name, items)
   return (
     <View style={styles.container}>
       <Text style={styles.name}>
@@ -37,8 +36,6 @@ const styles = StyleSheet.create({
   items: {
     flex: 4,
     flexDirection: 'row',
-    // borderWidth: 1,
-    // borderColor: 'blue',
   },
 });
 

@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    // minWidth: '100%'
     maxHeight: 40,
   },
   button: {

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
+const categories = ['Name', 'Total w/ Tax', 'Choose', 'Tip', 'Total w/ Tip'];
+
 const Categories = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Name</Text>
-      <Text style={styles.text}>Total w/ Tax</Text>
-      <Text style={styles.text}>Choose</Text>
-      <Text style={styles.text}>Tip</Text>
-      <Text style={styles.text}>Total w/ Tip</Text>
+      {categories.map(category => (
+        <Text style={styles.text}>{category}</Text>
+      ))}
     </View>
   )
 }
